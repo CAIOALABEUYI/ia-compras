@@ -84,6 +84,27 @@ abas = st.tabs([
     "🏠 Visão Geral", "📉 Análise de Custos", "📊 Gráficos", "📌 KPIs & Fornecedores",
     "🤖 Assistente", "📤 Exportações", "🚨 Alertas", "💰 Simulações"
 ])
+# ✅ DataFrame simulado para funcionamento inicial do app
+df = pd.DataFrame({
+    "Equipamento": ["Fogão Industrial", "Coifa Inox", "Split 36k BTUs"],
+    "Matéria-prima": [700, 450, 1200],
+    "Mão de Obra": [500, 300, 900],
+    "Custo Total Estimado": [1640, 1220, 3250]
+})
+
+fornecedores = pd.DataFrame({
+    "Fornecedor": ["Venâncio", "Progás", "Metalcubas"],
+    "Produto": ["Fogão", "Coifa", "Split"],
+    "Nota Fiscal": ["12345", "67890", "54321"]
+})
+
+kpis = pd.DataFrame({
+    "Item": ["Fogão Industrial", "Coifa Inox", "Split 36k BTUs"],
+    "Prazo Médio (dias)": [12, 14, 10],
+    "SLA %": [90, 92, 95]
+})
+
+csv = df.to_csv(index=False).encode("utf-8")
 
 with abas[0]:
     st.title("🏠 Visão Geral")

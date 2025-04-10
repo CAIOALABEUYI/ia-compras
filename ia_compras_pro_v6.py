@@ -7,7 +7,7 @@ import base64
 from fpdf import FPDF
 import random
 
-st.set_page_config(page_title="IA de Compras Pro V7", page_icon="💼", layout="wide")
+st.set_page_config(page_title="IA de Compras Pro V6", page_icon="💼", layout="wide")
 
 language = st.sidebar.selectbox("🌐 Idioma / Language / Langue:", ["Português", "English", "Français"])
 

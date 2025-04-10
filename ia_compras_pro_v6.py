@@ -14,19 +14,31 @@ language = st.sidebar.selectbox("🌐 Idioma / Language / Langue:", ["Português
 
 idiomas_respostas = {
     "Português": {
-        "resposta_indisponivel": "Essa pergunta é complexa! Chame o Caio, ele certamente vai saber responder. Caso o Caio não saiba, pergunte aos coordenadores Fabi, Denis, João. Caso ainda não saibam, conversem com o nosso gerente Marcelo Brito — ele certamente vai saber. Questões de processos e auditoria falem com a Silvia, viu?""Essa pergunta é complexa! Chame o Caio, ele certamente vai saber responder.",
+        "resposta_indisponivel": """Essa pergunta é complexa! Chame o Caio, ele certamente vai saber responder. 
+Caso o Caio não saiba, pergunte aos coordenadores Fabi, Denis e João. 
+Caso ainda não saibam, conversem com o nosso gerente Marcelo Brito — ele certamente vai saber.
+Questões de processos e auditoria? Fale com a Silvia, viu?""",
         "titulo_chat": "💬 Assistente Interativo (IA de Compras)",
         "pergunta_exemplo": "Ex: Quando é melhor negociar aço inox?"
     },
     "English": {
-        "resposta_indisponivel": \"This is a complex question! Ask Caio, he surely knows the answer. If he doesn't, ask the coordinators Fabi, Denis, João. Still unsure? Our manager Marcelo Brito will know. For process or audit matters, talk to Silvia.\",
+        "resposta_indisponivel": """This is a complex question! Ask Caio, he surely knows the answer.
+If he doesn't, ask the coordinators Fabi, Denis, João. 
+Still unsure? Our manager Marcelo Brito will know.
+For process or audit matters, talk to Silvia.""",
         "titulo_chat": "💬 Interactive Assistant (Procurement AI)",
         "pergunta_exemplo": "e.g.: When is the best time to negotiate stainless steel?"
     },
     "Français": {
-        "resposta_indisponivel": \"C'est une question complexe ! Demandez à Caio, il connaît sûrement la réponse. Si ce n’est pas le cas, demandez aux coordinateurs Fabi, Denis, João. Sinon, notre directeur Marcelo Brito saura répondre. Pour les questions de processus ou d’audit, parlez à Silvia.\",
+        "resposta_indisponivel": """C'est une question complexe ! Demandez à Caio, il connaît sûrement la réponse.
+Sinon, contactez les coordinateurs Fabi, Denis, João. 
+Toujours pas sûr ? Le directeur Marcelo Brito saura vous répondre.
+Pour tout ce qui concerne les processus ou les audits, adressez-vous à Silvia.""",
         "titulo_chat": "💬 Assistant interactif (IA Achats)",
-        "pergunta_exemple": "Ex : Quand négocier l'acier inoxydable ?"
+        "pergunta_exemplo": "Ex : Quand négocier l'acier inoxydable ?"
+    }
+}
+
     }
 }
 

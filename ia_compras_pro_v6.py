@@ -91,13 +91,13 @@ if pergunta:
 
 st.success(idiomas_respostas[language]["dashboard"] + ": IA de Compras carregada com sucesso! Continue navegando nas abas do dashboard para acessar gráficos, KPIs, simulações e relatórios.")
 
-aba1, aba2, aba3, aba4, aba5, aba6 = st.tabs([
+aba1, aba2, aba3, aba4, aba5, aba6 = st.tabs[
     idiomas_respostas[language]["dashboard"],
     idiomas_respostas[language]["simulador"],
     idiomas_respostas[language]["analise_gastos"],
     idiomas_respostas[language]["fornecedores"],
     idiomas_respostas[language]["relatorios"],
-    idiomas_respostas[language]["melhores_praticas"])
+    idiomas_respostas[language]["melhores_praticas"]
 
 with aba1:
     st.header(idiomas_respostas[language]["dashboard"])

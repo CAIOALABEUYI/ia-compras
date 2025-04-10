@@ -87,6 +87,11 @@ with abas[7]:
     saving_total = (preco_unitario - novo_preco) * qtd
     st.success(f"💸 Economia: R$ {saving_total:,.2f}")
 
+
+    qtd = st.slider("Volume", 1, 1000, 100)
+    saving_total = (preco_unitario - novo_preco) * qtd
+    st.success(f"💸 Economia: R$ {saving_total:,.2f}")
+
         preco_unitario = st.number_input("Preço Unitário Atual", value=1600.0)
 
     with col2:

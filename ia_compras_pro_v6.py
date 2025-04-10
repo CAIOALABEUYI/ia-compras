@@ -74,10 +74,8 @@ with ZipFile(zip_path, 'w') as zipf:
         with open(file_path, "w", encoding="utf-8") as f:
             f.write(content.strip())
         zipf.write(file_path, arcname=filename)
-
 zip_path
-
-    with col2:
+ with col2:
         novo_preco = st.number_input("Novo Preço Negociado", value=1500.0)
     qtd = st.slider("Volume", 1, 1000, 100)
     saving_total = (preco_unitario - novo_preco) * qtd

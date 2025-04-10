@@ -1,9 +1,3 @@
-# Tentar novamente: gerar a versão final do app e empacotar em um .zip
-
-import zipfile
-
-# Conteúdo dos arquivos
-app_code_v2 = """
 import streamlit as st
 import random
 import matplotlib.pyplot as plt
@@ -50,7 +44,7 @@ if menu == "🧠 Assistente IA":
 # Seção 2: Painel de Ferramentas
 elif menu == "📊 Painel de Ferramentas":
     st.title("📊 Ferramentas de Compras")
-    st.markdown(\"\"\"
+    st.markdown("""
     **RFI (Request for Information):** usado para levantamento de opções no mercado.
 
     **RFQ (Request for Quotation):** solicitação formal de preços. Ideal para produtos padronizados.
@@ -60,7 +54,7 @@ elif menu == "📊 Painel de Ferramentas":
     **TCO (Total Cost of Ownership):** avalia o custo total da aquisição: compra, frete, manutenção, impostos.
 
     **SRM (Supplier Relationship Management):** gestão colaborativa com fornecedores estratégicos.
-    \"\"\")
+    """)
 
 # Seção 3: Gráfico TCO
 elif menu == "📈 Gráfico de TCO":
@@ -76,7 +70,7 @@ elif menu == "📈 Gráfico de TCO":
 # Seção 4: Sobre
 elif menu == "📃 Sobre":
     st.title("📃 Sobre a IA de Compras Pro")
-    st.markdown(\"\"\"
+    st.markdown("""
     Esta é uma aplicação de IA voltada para profissionais de compras. Ela reúne:
 
     - Melhores práticas de Procurement
@@ -85,25 +79,4 @@ elif menu == "📃 Sobre":
     - Base pronta para evoluir com dados reais
 
     Desenvolvido por Caio com apoio do ChatGPT 🚀
-    \"\"\")
-"""
-
-requirements_txt = "streamlit\nmatplotlib"
-
-# Salvar arquivos
-app_path = "/mnt/data/ia_compras_pro_app_v2.py"
-req_path = "/mnt/data/requirements.txt"
-zip_path = "/mnt/data/ia_compras_pro_v2.zip"
-
-with open(app_path, "w") as f:
-    f.write(app_code_v2)
-
-with open(req_path, "w") as f:
-    f.write(requirements_txt)
-
-# Criar arquivo .zip
-with zipfile.ZipFile(zip_path, "w") as zipf:
-    zipf.write(app_path, arcname="ia_compras_pro_app_v2.py")
-    zipf.write(req_path, arcname="requirements.txt")
-
-zip_path
+    """)

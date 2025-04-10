@@ -73,16 +73,23 @@ Pour tout ce qui concerne les processus ou les audits, adressez-vous à Silvia."
 st.sidebar.markdown("---")
 st.sidebar.subheader(idiomas_respostas[language]["titulo_chat"])
 pergunta = st.sidebar.text_input(idiomas_respostas[language]["pergunta_exemplo"])
-respostas_base = [
-    "Negocie aço inox no início do trimestre, quando os fornecedores renovam metas.",
-    "Para ar-condicionado, negociações são melhores no inverno, fora da sazonalidade.",
-    "Audite fornecedores com base em lead time, qualidade e conformidade documental.",
-    "Use índices de mercado e histórico de preços como base para solicitar desconto."
-]
+
+respostas_base = {
+    "aço": "Para negociar aço inox, o ideal é monitorar os preços de mercado e as tendências de oferta e demanda. Negociações no início do trimestre, quando fornecedores renovam suas metas, podem render descontos significativos.",
+    "ar-condicionado": "A melhor época para negociar ar-condicionado é durante o inverno, fora da alta temporada. Fornecedores costumam oferecer descontos para aumentar as vendas durante os meses de baixa procura. Além disso, fique atento a promoções de modelos de anos anteriores, que podem ter preços mais competitivos.",
+    "auditar": "A auditoria de fornecedores deve ser baseada em critérios como lead time, qualidade dos produtos/serviços e conformidade documental. Utilize checklists e ferramentas de avaliação para garantir um processo completo.",
+    "desconto": "Para solicitar descontos, use índices de mercado e histórico de preços como base. Apresente dados concretos que justifiquem sua solicitação e esteja preparado para negociar com base no volume de compra e prazos de pagamento."
+}
+
 if pergunta:
-    if any(palavra in pergunta.lower() for palavra in ["aço", "ar-cond", "negociar", "auditar", "desconto"]):
-        st.sidebar.success(random.choice(respostas_base))
-    else:
+    palavras_chave = pergunta.lower().split()
+    resposta_encontrada = False
+    for palavra_chave, resposta in respostas_base.items():
+        if palavra_chave in palavras_chave:
+            st.sidebar.success(resposta)
+            resposta_encontrada = True
+            break
+    if not resposta_encontrada:
         st.sidebar.warning(idiomas_respostas[language]["resposta_indisponivel"])
 
 st.success(idiomas_respostas[language]["dashboard"] + ": IA de Compras carregada com sucesso! Continue navegando nas abas do dashboard para acessar gráficos, KPIs, simulações e relatórios.")

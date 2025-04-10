@@ -73,10 +73,28 @@ with ZipFile(zip_path, 'w') as zipf:
         file_path = f"/mnt/data/{filename}"
         with open(file_path, "w", encoding="utf-8") as f:
             f.write(content.strip())
-        zipf.write(file_path, arcname=filename)
-zip_path
- with col2:
+with abas[7]:
+    st.header("💰 Simulador de Saving")
+    col1, col2 = st.columns(2)
+
+    with col1:
+        preco_unitario = st.number_input("Preço Unitário Atual", value=1600.0)
+
+    with col2:
         novo_preco = st.number_input("Novo Preço Negociado", value=1500.0)
+
     qtd = st.slider("Volume", 1, 1000, 100)
+    saving_total = (preco_unitario - novo_preco) * qtd
+    st.success(f"💸 Economia: R$ {saving_total:,.2f}")
+
+        preco_unitario = st.number_input("Preço Unitário Atual", value=1600.0)
+
+    with col2:
+        novo_preco = st.number_input("Novo Preço Negociado", value=1500.0)
+
+    qtd = st.slider("Volume", 1, 1000, 100)
+    saving_total = (preco_unitario - novo_preco) * qtd
+    st.success(f"💸 Economia: R$ {saving_total:,.2f}")
+
     saving_total = (preco_unitario - novo_preco) * qtd
     st.success(f"💸 Economia: R$ {saving_total:,.2f}")

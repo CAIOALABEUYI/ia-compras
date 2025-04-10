@@ -152,4 +152,14 @@ with aba3:
 
 with aba4:
     st.header(idiomas_respostas[language]["fornecedores"])
-    fig_fornecedores = px.scatter(data_fornecedores, x='Tempo de Entrega (dias)', y='Avaliação',
+    fig_fornecedores = px.scatter(data_fornecedores, x='Tempo de Entrega (dias)', y='Avaliação', title='Avaliação dos Fornecedores')
+    st.plotly_chart(fig_fornecedores)
+
+with aba5:
+    st.header(idiomas_respostas[language]["relatorios"])
+    st.table(data_relatorios)
+
+with aba6:
+    st.header(idiomas_respostas[language]["melhores_praticas"])
+    for pratica in melhores_praticas:
+        st.write(f"- {pratica}")

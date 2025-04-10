@@ -1,7 +1,5 @@
 import streamlit as st
-import matplotlib.pyplot as plt
 import pandas as pd
-from datetime import datetime
 import plotly.express as px
 import random
 
@@ -98,9 +96,34 @@ aba1, aba2, aba3, aba4, aba5, aba6 = st.tabs([
     idiomas_respostas[language]["melhores_praticas"]
 ])
 
+# Dados simulados para as abas
+data_gastos = pd.DataFrame({
+    'Categoria': ['Matéria-prima', 'Transporte', 'Embalagem', 'Serviços'],
+    'Gasto': [10000, 5000, 3000, 2000]
+})
+
+data_fornecedores = pd.DataFrame({
+    'Fornecedor': ['A', 'B', 'C', 'D'],
+    'Avaliação': [4.5, 3.8, 4.2, 3.5],
+    'Tempo de Entrega (dias)': [7, 10, 8, 12]
+})
+
+data_relatorios = pd.DataFrame({
+    'Relatório': ['Gastos por Categoria', 'Avaliação de Fornecedores', 'Economia por Negociação'],
+    'Link': ['gastos.pdf', 'fornecedores.pdf', 'economia.pdf']
+})
+
+melhores_praticas = [
+    "Negocie sempre com múltiplos fornecedores para obter melhores preços.",
+    "Mantenha um bom relacionamento com seus fornecedores para garantir entregas e condições favoráveis.",
+    "Analise seus gastos regularmente para identificar oportunidades de economia.",
+    "Utilize ferramentas de análise de dados para tomar decisões mais informadas."
+]
+
 with aba1:
     st.header(idiomas_respostas[language]["dashboard"])
     # Adicionar KPIs e gráficos resumidos aqui
+    st.write("Aqui você pode adicionar KPIs e gráficos resumidos.")
 
 with aba2:
     st.header(idiomas_respostas[language]["titulo_simulador"])
@@ -120,19 +143,13 @@ with aba2:
         saving_total = (preco_unitario - novo_preco) * qtd
         st.success(idiomas_respostas[language]["economia_total"].format(saving_total=saving_total))
         # Adicionar visualização do saving aqui
+        st.write("Aqui você pode adicionar uma visualização do saving.")
 
 with aba3:
     st.header(idiomas_respostas[language]["analise_gastos"])
-    st.write("Funcionalidade de análise de gastos a ser implementada.")
+    fig_gastos = px.bar(data_gastos, x='Categoria', y='Gasto', title='Gastos por Categoria')
+    st.plotly_chart(fig_gastos)
 
 with aba4:
     st.header(idiomas_respostas[language]["fornecedores"])
-    st.write("Funcionalidade de gestão de fornecedores a ser implementada.")
-
-with aba5:
-    st.header(idiomas_respostas[language]["relatorios"])
-    st.write("Funcionalidade de geração de relatórios a ser implementada.")
-
-with aba6:
-    st.header(idiomas_respostas[language]["melhores_praticas"])
-    st.write("Funcionalidade de melhores práticas a ser implementada.")
+    fig_fornecedores = px.scatter(data_fornecedores, x='Tempo de Entrega (dias)', y='Avaliação',

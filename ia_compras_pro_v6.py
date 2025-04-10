@@ -166,4 +166,5 @@ with aba1:
     st.plotly_chart(fig_gastos_pizza)
 
     st.subheader("Avaliação de Fornecedores")
-    fig_fornecedores_scatter = px.scatter(data_forne
+    fig_fornecedores_scatter = px.scatter(data_fornecedores, x="valor", y="lead_time", color="categoria")
+

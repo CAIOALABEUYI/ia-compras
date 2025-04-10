@@ -8,66 +8,7 @@ st.set_page_config(page_title="IA de Compras Pro V6", page_icon="", layout="wide
 language = st.sidebar.selectbox(" Idioma / Language / Langue:", ["Português", "English", "Français"])
 
 idiomas_respostas = {
-    "Português": {
-        "resposta_indisponivel": """Essa pergunta é complexa! Chame o Caio, ele certamente vai saber responder.
-Caso o Caio não saiba, pergunte aos coordenadores Fabi, Denis e João.
-Caso ainda não saibam, conversem com o nosso gerente Marcelo Brito — ele certamente vai saber.
-Questões de processos e auditoria? Fale com a Silvia, viu?""",
-        "titulo_chat": " Assistente Interativo (IA de Compras)",
-        "pergunta_exemplo": "Ex: Quando é melhor negociar aço inox?",
-        "titulo_simulador": " Simulador de Saving",
-        "preco_unitario": "Preço Unitário Atual",
-        "novo_preco": "Novo Preço Negociado",
-        "volume": "Volume",
-        "alerta_preco": " O novo preço está maior ou igual ao preço atual. Revise a negociação.",
-        "economia_total": " Economia Total Estimada: R$ {saving_total:,.2f}",
-        "dashboard": " Dashboard Geral",
-        "simulador": " Simulador",
-        "analise_gastos": " Análise de Gastos",
-        "fornecedores": " Fornecedores",
-        "relatorios": " Relatórios",
-        "melhores_praticas": " Melhores Práticas"
-    },
-    "English": {
-        "resposta_indisponivel": """This is a complex question! Ask Caio, he surely knows the answer.
-If he doesn't, ask the coordinators Fabi, Denis, João.
-Still unsure? Our manager Marcelo Brito will know.
-For process or audit matters, talk to Silvia.""",
-        "titulo_chat": " Interactive Assistant (Procurement AI)",
-        "pergunta_exemplo": "e.g.: When is the best time to negotiate stainless steel?",
-        "titulo_simulador": " Saving Simulator",
-        "preco_unitario": "Current Unit Price",
-        "novo_preco": "New Negotiated Price",
-        "volume": "Volume",
-        "alerta_preco": " The new price is higher than or equal to the current price. Review the negotiation.",
-        "economia_total": " Estimated Total Savings: $ {saving_total:,.2f}",
-        "dashboard": " General Dashboard",
-        "simulador": " Simulator",
-        "analise_gastos": " Spend Analysis",
-        "fornecedores": " Suppliers",
-        "relatorios": " Reports",
-        "melhores_praticas": " Best Practices"
-    },
-    "Français": {
-        "resposta_indisponivel": """C'est une question complexe! Demandez à Caio, il connaît sûrement la réponse.
-Sinon, contactez les coordinateurs Fabi, Denis, João.
-Toujours pas sûr? Le directeur Marcelo Brito saura vous répondre.
-Pour tout ce qui concerne les processus ou les audits, adressez-vous à Silvia.""",
-        "titulo_chat": " Assistant interactif (IA Achats)",
-        "pergunta_exemplo": "Ex : Quand négocier l'acier inoxydable?",
-        "titulo_simulador": " Simulateur d'économies",
-        "preco_unitario": "Prix unitaire actuel",
-        "novo_preco": "Nouveau prix négocié",
-        "volume": "Volume",
-        "alerta_preco": " Le nouveau prix est supérieur ou égal au prix actuel. Vérifiez la négociation.",
-        "economia_total": " Économies totales estimées : {saving_total:,.2f} €",
-        "dashboard": " Tableau de bord général",
-        "simulador": " Simulateur",
-        "analise_gastos": " Analyse des dépenses",
-        "fornecedores": " Fournisseurs",
-        "relatorios": " Rapports",
-        "melhores_praticas": " Meilleures pratiques"
-    }
+    # ... (restante do dicionário idiomas_respostas)
 }
 
 st.sidebar.markdown("---")
@@ -166,5 +107,67 @@ with aba1:
     st.plotly_chart(fig_gastos_pizza)
 
     st.subheader("Avaliação de Fornecedores")
-    fig_fornecedores_scatter = px.scatter(data_forne
-                                         )
+    fig_fornecedores_scatter = px.scatter(data_fornecedores, x='Tempo de Entrega (dias)', y='Avaliação', title='Tempo de Entrega vs. Avaliação do Fornecedor')
+    st.plotly_chart(fig_fornecedores_scatter)
+
+    st.subheader("Informações Detalhadas dos Fornecedores")
+    st.table(data_fornecedores_detalhado)
+
+    st.subheader("KPIs")
+    st.write(f"Valor Total de Pedidos: R$ {data_pedidos['Valor Total'].sum():,.2f}")
+    st.write(f"Tempo Médio de Entrega: {data_fornecedores['Tempo de Entrega (dias)'].mean():.2f} dias")
+    st.write(f"Avaliação Média dos Fornecedores: {data_fornecedores['Avaliação'].mean():.2f}")
+
+with aba2:
+    st.header(idiomas_respostas[language]["titulo_simulador"])
+    col1, col2 = st.columns(2)
+
+    with col1:
+        preco_unitario = st.number_input(idiomas_respostas[language]["preco_unitario"], value=1600.0)
+
+    with col2:
+        novo_preco = st.number_input(idiomas_respostas[language]["novo_preco"], value=1500.0)
+
+    qtd = st.slider(idiomas_respostas[language]["volume"], 1, 1000, 100)
+
+    if novo_preco >= preco_unitario:
+        st.warning(idiomas_respostas[language]["alerta_preco"])
+    else:
+        saving_total = (preco_unitario - novo_preco) * qtd
+        st.success(idiomas_respostas[language]["economia_total"].format(saving_total=saving_total))
+        # Adicionar visualização do saving aqui
+        st.write("Aqui você pode adicionar uma visualização do saving.")
+
+with aba3:
+    st.header(idiomas_respostas[language]["analise_gastos"])
+    fig_gastos = px.bar(data_gastos, x='Categoria', y='Gasto', title='Gastos por Categoria')
+    st.plotly_chart(fig_gastos)
+
+with aba4:
+    st.header(idiomas_respostas[language]["fornecedores"])
+    st.subheader("Avaliação de Fornecedores")
+    fornecedor = st.selectbox("Selecione o Fornecedor", ["Fornecedor A", "Fornecedor B", "Fornecedor C"])
+    qualidade = st.slider("Qualidade do Produto/Serviço", 1, 5, 3)
+    prazo = st.slider("Prazo de Entrega", 1, 5, 3)
+    comunicacao = st.slider("Comunicação", 1, 5, 3)
+    preco = st.slider("Preço", 1, 5, 3)
+    inovacao = st.slider("Capacidade de Inovação", 1, 5, 3)
+    sustentabilidade = st.slider("Sustentabilidade", 1, 5, 3)
+    st.write(f"Avaliação do Fornecedor {fornecedor}:")
+    st.write(f"- Qualidade: {qualidade}/5")
+    st.write(f"- Prazo de Entrega: {prazo}/5")
+    st.write(f"- Comunicação: {comunicacao}/5")
+    st.write(f"- Preço: {preco}/5")
+    st.write(f"- Capacidade de Inovação: {inovacao}/5")
+    st.write(f"- Sustentabilidade: {sustentabilidade}/5")
+
+with aba5:
+    st.header(idiomas_respostas[language]["relatorios"])
+    st.table(data_relatorios)
+
+with aba6:
+    st.header(idiomas_respostas[language]["melhores_praticas"])
+    for categoria, praticas in melhores_praticas.items():
+        st.subheader(categoria)
+        for pratica in praticas:
+            st.write(f"- {pratica}")

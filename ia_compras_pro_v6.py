@@ -39,9 +39,6 @@ Pour tout ce qui concerne les processus ou les audits, adressez-vous à Silvia."
     }
 }
 
-    }
-}
-
 # Adiciona assistente de perguntas
 st.sidebar.markdown("---")
 st.sidebar.subheader(idiomas_respostas[language]["titulo_chat"])
